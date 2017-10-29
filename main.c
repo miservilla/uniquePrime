@@ -2,10 +2,21 @@
 #define UL unsigned long
 
 UL prime(UL);
+UL multiplier(UL);
 
-void main()
+void main ( void )
 {
-  printf("%lu",prime(4));
+  unsigned long m = 126;/*modulus, 0 < m.*/
+  unsigned long a = multiplier(m);/*multiplier, 0 < a < m.*/
+  unsigned long c = 25;/*increment, 0 <= c < m.*/
+  unsigned long x = c;/*seed, 0 <= xsub0 < m.*/
+
+  int i ;
+  for ( i =1; i <=10; i ++)
+  {
+    printf ("%lu\n", x );
+    x = ( a * x + c ) % m ;
+  }
 }
 
 UL prime(UL n)
@@ -29,4 +40,12 @@ UL prime(UL n)
     divisor++;
   }
   return product * n;
+}
+UL multiplier(UL m)
+{
+  if(prime(m) % 4 == 0)
+  {
+    return 1 + 2 * (prime(m));
+  }
+  return 1 + (prime(m));
 }
